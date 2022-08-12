@@ -1,0 +1,27 @@
+## Dependencies  
+- **tttpv2-service**
+- spring
+	- boot starter web
+	- boot starter tomcat
+	- springdoc openapi
+		- webmvc core
+		- ui
+	- boot devtools
+	- boot configuration processor
+	- security oauth2 authorization server
+	- boot starter oauth2 resource server
+- hibernate
+	- validator
+	- ecache
+- querydsl
+	- apt
+	- jpa
+- mariadb client
+- apache common lang3
+- mapstruct
+	- mapstruct
+	- processor
+- lombok
+- pivovarit - throwing function
+- zalando - problem spring web
+

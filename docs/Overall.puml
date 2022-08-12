@@ -1,0 +1,29 @@
+@startuml
+start
+
+partition "WEB" {
+	:rest]
+}
+
+partition "SERVICE" {
+	:]
+}
+
+split
+	partition "AUTH" {
+	}
+split again
+	partition "COMMON" {
+	}
+split again
+	partition "TIEP-CONG-DAN" {
+	}
+split again
+	partition "XU-LY-DON" {
+	}
+endsplit
+partition "CORE" {
+	:]
+}
+
+@enduml
