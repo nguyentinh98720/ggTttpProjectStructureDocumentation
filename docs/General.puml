@@ -1,0 +1,27 @@
+@startuml
+package web {
+	[tttpv2-web]
+}
+package auth {
+	(oauth2-client) -up-> [tttpv2-auth]
+	(oauth2-resource)	-up-> [tttpv2-auth]
+}
+package domain1 {
+	[tttpv2-core]
+	[tttpv2-common]
+}
+package domain2 {
+	[tttpv2-tiepcongdan]
+	[tttpv2-xulydon]
+}
+package service {
+	[tttpv2-service]
+}
+
+[tttpv2-service] -up-> [tttpv2-web]
+[tttpv2-auth] -left-> [tttpv2-service]
+[tttpv2-core] -up-> [tttpv2-auth]
+[tttpv2-core] -up-> [tttpv2-service]
+[tttpv2-common] --> [tttpv2-service]
+
+@enduml

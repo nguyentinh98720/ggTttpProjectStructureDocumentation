@@ -1,29 +1,104 @@
 @startuml
-start
-
-partition "WEB" {
-	:rest]
+skinparam ArrowHeadColor none
+partition #lightgrey "CORE" {
+	split
+		-[hidden]->
+		:annotation]
+	split again
+		-[hidden]->
+		:bus]
+	split again
+		-[hidden]->
+		:domain]
+	split again
+		-[hidden]->
+		:enum]
+	split again
+		-[hidden]->
+		:exeption]
+	split again
+		-[hidden]->
+		:handler]
+	split again
+		-[hidden]->
+		:model]
+	split again
+		-[hidden]->
+		:repository]
+	split again
+		-[hidden]->
+		:service]
+	endsplit
 }
-
-partition "SERVICE" {
-	:]
-}
-
 split
-	partition "AUTH" {
+	split
+		-[hidden]->
+		package #yellow "OAUTH2" {
+			split
+				-[hidden]->
+				:oauth2-client;
+			split again
+				-[hidden]->
+				:oauth2-resource;
+			endsplit
+		}
+	split again
+		partition #lightblue "AUTH" {
+			split
+				:domain]
+			split again
+				:dto]
+			split again
+				:mapper]
+			split again
+				:repository]
+			endsplit
+		}
+	endsplit
+split again
+	partition #lightblue "COMMON" {
 	}
 split again
-	partition "COMMON" {
+	partition #lightblue "TIEP-CONG-DAN" {
 	}
 split again
-	partition "TIEP-CONG-DAN" {
-	}
-split again
-	partition "XU-LY-DON" {
+	partition #lightblue "XU-LY-DON" {
 	}
 endsplit
-partition "CORE" {
-	:]
+partition #orange "SERVICE" {
+	switch ()
+	case ()
+		:auth|
+		split
+			:handler]
+			split
+				:command]
+			split again
+				:query]
+			endsplit
+		split again
+			:model]
+			'--------- có thể phần này sẽ chia ra command và query ------
+		split again
+			:Service and
+			service implement}
+		endsplit
+	case ()
+		:common|
+	case ()
+		:tiepcongdan|
+	case ()
+		:xulydon|
+	endswitch
 }
-
+partition #lightgreen "WEB" {
+	split
+		:config]
+	split again
+		:**rest**]
+		kill
+	split again
+		:security]
+	endsplit
+}
 @enduml
